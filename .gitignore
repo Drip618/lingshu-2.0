@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +40,26 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# API test scripts (may contain keys)
+test-*.js
+test-*.py
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local config with secrets
+*.local.json
+*.local.js
+secrets/
+keys/

@@ -1,0 +1,24 @@
+{
+  "push_time": "09:00",
+  "enabled_sources": ["huggingface", "bilibili", "youtube", "douyin", "weibo", "zhihu", "google_news"],
+  "output": {
+    "custom_path": "/Users/Drip/Downloads/LingshuBriefings"
+  },
+  "items_per_source": 3,
+  "sources_api": {
+    "GitHub": {"token": "${GITHUB_TOKEN}", "base_url": "https://api.github.com"},
+    "Hugging Face": {},
+    "魔搭社区": {},
+    "Bilibili": {"base_url": "https://api.bilibili.com"},
+    "YouTube": {"api_key": ""},
+    "微信": {},
+    "抖音": {},
+    "小红书": {},
+    "微博": {},
+    "TikTok": {},
+    "今日头条": {},
+    "知乎": {},
+    "DuckDuckGo": {},
+    "Google News": {}
+  }
+}
