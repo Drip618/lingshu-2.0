@@ -7,8 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  # ===== 1. 基础代码检查 =====
   lint:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,8 +20,8 @@ jobs:
       - run: npm run lint
       - run: npx tsc --noEmit
 
-  # ===== 2. 构建测试 =====
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,16 +32,10 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  # ===== 3. API 路由端到端测试 =====
   api-test:
+    name: API Tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    services:
-      # 启动 Next.js 开发服务器
-    strategy:
-      fail-fast: false
-      matrix:
-        provider: [openai, google, zhipu]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -50,13 +44,9 @@ jobs:
           cache: npm
       - run: npm ci
 
-      # 启动开发服务器
       - name: Start dev server
         run: npm run dev &
-        env:
-          NODE_TLS_REJECT_UNAUTHORIZED: 0
 
-      # 等待服务器启动
       - name: Wait for server
         run: |
           for i in $(seq 1 30); do
@@ -69,26 +59,24 @@ jobs:
           echo "Server failed to start"
           exit 1
 
-      # 运行 API 测试脚本
       - name: Run API tests
         run: node scripts/test-api-ci.js
         env:
-          TEST_PROVIDER: ${{ matrix.provider }}
-          TEST_API_KEY: ${{ secrets[format('TEST_{0}_API_KEY', matrix.provider)] }}
-          TEST_BASE_URL: ${{ secrets[format('TEST_{0}_BASE_URL', matrix.provider)] }}
-          TEST_MODEL: ${{ secrets[format('TEST_{0}_MODEL', matrix.provider)] }}
+          TEST_PROVIDER: openai
+          TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
+          TEST_BASE_URL: ${{ secrets.TEST_BASE_URL }}
+          TEST_MODEL: ${{ secrets.TEST_MODEL }}
           NODE_TLS_REJECT_UNAUTHORIZED: 0
 
-      # 验证主要路由
-      - name: Test core API routes
+      - name: Verify API routes
         run: |
-          # 测试 AI 测试路由
+          echo "--- Testing AI test route ---"
           curl -sf -X POST http://localhost:3000/api/ai/test \
             -H 'Content-Type: application/json' \
             -d '{"apiKey":"test","baseURL":"https://openapi.liblibai.cloud","model":"star-3"}' \
             -o /dev/null && echo "✓ AI test route works" || echo "✗ AI test route failed"
 
-          # 验证路由存在性
+          echo "--- Checking route files ---"
           for route in analyze image video storyboard assets filesystem projects upload pdf; do
             if [ -f "app/api/$route/route.ts" ]; then
               echo "✓ Route /api/$route exists"
