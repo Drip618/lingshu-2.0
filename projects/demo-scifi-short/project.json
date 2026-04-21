@@ -1,0 +1,74 @@
+{
+  "id": "demo-scifi-short",
+  "name": "《星际回声》科幻短片",
+  "type": "scifi-short-film",
+  "description": "一部关于人类首次接触外星信号的科幻短片项目",
+  "createdAt": "2026-04-22T00:00:00.000Z",
+  "updatedAt": "2026-04-22T00:00:00.000Z",
+  "script": {
+    "content": "第一幕：信号\n\n2087年，月球背面深空监听站。\n\n艾琳博士盯着屏幕上跳动的波形，手指微微颤抖。这不是宇宙背景辐射的随机噪声——这是一个模式。一个清晰的、重复的数学序列。\n\n\"指挥中心，我是月背站。我确认收到了非自然信号。重复，非自然信号。\"\n\n她的声音在空旷的控制室里回荡。窗外，地球像一颗蓝色宝石悬挂在黑色天鹅绒般的太空中。\n\n第二幕：解码\n\n七十二小时后，全球顶尖的数学家和密码学家齐聚日内瓦。\n\n\"这不是语言，\"陈教授指着全息投影上的数据流，\"这是图像。他们发送的是...一张地图。\"\n\n屏幕上，星图缓缓展开。一条金色的轨迹从猎户座旋臂延伸至太阳系。\n\n艾琳站在会议室后排，心跳加速。她知道，从这一刻起，人类不再是宇宙中孤独的存在。\n\n第三幕：回应\n\n联合国紧急会议。投票结果：193票赞成，0票反对。\n\n人类将回复。\n\n艾琳被选为信息编写团队负责人。她站在巨大的天线阵列前，仰望着星空。\n\n\"我们要说什么？\"年轻的助手问。\n\n艾琳沉默了片刻。\"告诉他们，我们在这里。告诉他们，我们准备好了。\"\n\n信号发射的那一刻，整个地球似乎都在屏息等待。\n\n深空中，一个微弱但清晰的回波正在返回。\n\n人类的宇宙时代，正式开启。",
+    "analysis": {
+      "genre": "科幻/剧情",
+      "tone": "神秘、震撼、希望",
+      "theme": "人类与未知文明的首次接触",
+      "structure": {
+        "act1": "发现信号 - 建立悬念",
+        "act2": "解码信息 - 揭示真相",
+        "act3": "人类回应 - 开启新纪元"
+      },
+      "characters": [
+        {
+          "name": "艾琳博士",
+          "role": "主角",
+          "description": "深空监听站首席科学家，冷静理性但内心充满好奇心"
+        },
+        {
+          "name": "陈教授",
+          "role": "配角",
+          "description": "国际密码学专家，负责解码外星信号"
+        },
+        {
+          "name": "助手",
+          "role": "配角",
+          "description": "年轻的研究员，代表人类对未来的希望"
+        }
+      ],
+      "directorStyle": "丹尼斯·维伦纽瓦 - 宏大叙事、极简美学、沉浸式音效",
+      "shootingAdvice": "使用广角镜头展现宇宙浩瀚，特写捕捉角色情感变化，冷色调营造太空孤独感"
+    }
+  },
+  "storyboards": [
+    {
+      "scene": 1,
+      "shot": "Extreme Close-up",
+      "description": "艾琳的瞳孔中反射着屏幕上的信号波形",
+      "prompt": "Extreme close-up of a scientist's eye reflecting glowing data waveforms on a screen, cold blue lighting, sci-fi atmosphere"
+    },
+    {
+      "scene": 1,
+      "shot": "Wide Shot",
+      "description": "月球监听站内部，艾琳独自站在巨大的控制台前",
+      "prompt": "Wide shot of a futuristic lunar base control room, a lone scientist standing before massive holographic displays, Earth visible through window, cinematic lighting"
+    },
+    {
+      "scene": 2,
+      "shot": "Medium Shot",
+      "description": "日内瓦会议室，全息投影展示外星星图",
+      "prompt": "Medium shot of scientists gathered around a holographic star map projection, golden trajectory line from Orion to Solar System, modern conference room"
+    },
+    {
+      "scene": 3,
+      "shot": "Establishing Shot",
+      "description": "巨大的射电天线阵列在月光下指向星空",
+      "prompt": "Establishing shot of massive radio telescope array on lunar surface pointing at stars, Earth rising in background, dramatic rim lighting"
+    }
+  ],
+  "assets": [],
+  "settings": {
+    "aiProvider": "openai",
+    "model": "gpt-4o",
+    "imageModel": "dall-e-3",
+    "storyboardStyle": "cinematic",
+    "storyboardLayout": "2x2"
+  }
+}
