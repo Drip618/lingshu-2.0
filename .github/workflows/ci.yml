@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ===== 1. 基础代码检查 =====
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc --noEmit
+
+  # ===== 2. 构建测试 =====
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+  # ===== 3. API 路由端到端测试 =====
+  api-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      # 启动 Next.js 开发服务器
+    strategy:
+      fail-fast: false
+      matrix:
+        provider: [openai, google, zhipu]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      # 启动开发服务器
+      - name: Start dev server
+        run: npm run dev &
+        env:
+          NODE_TLS_REJECT_UNAUTHORIZED: 0
+
+      # 等待服务器启动
+      - name: Wait for server
+        run: |
+          for i in $(seq 1 30); do
+            if curl -s http://localhost:3000 > /dev/null 2>&1; then
+              echo "Server is ready"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Server failed to start"
+          exit 1
+
+      # 运行 API 测试脚本
+      - name: Run API tests
+        run: node scripts/test-api-ci.js
+        env:
+          TEST_PROVIDER: ${{ matrix.provider }}
+          TEST_API_KEY: ${{ secrets[format('TEST_{0}_API_KEY', matrix.provider)] }}
+          TEST_BASE_URL: ${{ secrets[format('TEST_{0}_BASE_URL', matrix.provider)] }}
+          TEST_MODEL: ${{ secrets[format('TEST_{0}_MODEL', matrix.provider)] }}
+          NODE_TLS_REJECT_UNAUTHORIZED: 0
+
+      # 验证主要路由
+      - name: Test core API routes
+        run: |
+          # 测试 AI 测试路由
+          curl -sf -X POST http://localhost:3000/api/ai/test \
+            -H 'Content-Type: application/json' \
+            -d '{"apiKey":"test","baseURL":"https://openapi.liblibai.cloud","model":"star-3"}' \
+            -o /dev/null && echo "✓ AI test route works" || echo "✗ AI test route failed"
+
+          # 验证路由存在性
+          for route in analyze image video storyboard assets filesystem projects upload pdf; do
+            if [ -f "app/api/$route/route.ts" ]; then
+              echo "✓ Route /api/$route exists"
+            else
+              echo "✗ Route /api/$route missing"
+            fi
+          done

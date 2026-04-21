@@ -50,9 +50,10 @@ next-env.d.ts
 # OS
 Thumbs.db
 
-# API test scripts (may contain keys)
-test-*.js
-test-*.py
+# API test scripts (may contain keys) - CI script is safe
+# test-*.js
+# test-*.py
+!scripts/test-api-ci.js
 
 # Python cache
 __pycache__/
