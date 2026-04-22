@@ -69,3 +69,6 @@ __pycache__/
 *.local.js
 secrets/
 keys/
+*.dmg
+*.zip
+release/
