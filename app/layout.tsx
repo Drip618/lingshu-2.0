@@ -1,20 +1,16 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "灵枢 - AI影视创作工作台",
-  description: "AI驱动的专业影视剧本分析、分镜设计、资产生成工作流",
-  icons: { icon: "/favicon.ico" },
+  title: '灵枢热点聚合 - 全网资讯一站式获取',
+  description: '聚合100+数据源，涵盖AI技术、开发者社区、科技媒体、社交媒体、视频平台、设计创意、学术研究、产品资讯、商业财经、综合资讯等十大分类',
+  icons: { icon: '/favicon.ico' },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className={`min-h-full flex flex-col ${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="zh-CN">
+      <body className="min-h-screen">
         {children}
       </body>
     </html>

@@ -1,0 +1,146 @@
+{
+  "api_keys": {
+    "github_token": "${GITHUB_TOKEN}",
+    "youtube_api": "",
+    "google_news_rss": "https://news.google.com/rss"
+  },
+  "sources": {
+    "github": {
+      "enabled": true,
+      "query_keywords": [
+        "AI",
+        "LLM",
+        "ComfyUI",
+        "video generation",
+        "AI filmmaking"
+      ]
+    },
+    "huggingface": {
+      "enabled": true,
+      "query_keywords": [
+        "text-to-video",
+        "image-generation",
+        "AI filmmaking",
+        "style transfer"
+      ]
+    },
+    "modelscope": {
+      "enabled": false
+    },
+    "bilibili": {
+      "enabled": true,
+      "query_keywords": [
+        "AI影视制作",
+        "ComfyUI教程",
+        "AI导演",
+        "AIGC短片",
+        "AI视频剪辑"
+      ]
+    },
+    "youtube": {
+      "enabled": true,
+      "query_keywords": [
+        "AI filmmaking 2025",
+        "ComfyUI tutorial",
+        "AI video generation",
+        "AI style transfer"
+      ]
+    },
+    "douyin": {
+      "enabled": true,
+      "query_keywords": [
+        "抖音 AI影视 最新",
+        "抖音 AIGC 最新"
+      ]
+    },
+    "xiaohongshu": {
+      "enabled": false
+    },
+    "weibo": {
+      "enabled": true
+    },
+    "tiktok": {
+      "enabled": true,
+      "query_keywords": [
+        "TikTok AI filmmaking trending",
+        "TikTok AI video effect"
+      ]
+    },
+    "toutiao": {
+      "enabled": false
+    },
+    "zhihu": {
+      "enabled": true,
+      "query_keywords": [
+        "知乎 AI 大模型 热门",
+        "知乎 AIGC 工具"
+      ]
+    },
+    "wechat": {
+      "enabled": false
+    },
+    "duckduckgo": {
+      "enabled": false
+    },
+    "google_news": {
+      "enabled": true,
+      "query_keywords": [
+        "AI filmmaking",
+        "AI agent",
+        "AIGC 工具"
+      ]
+    }
+  },
+  "enabled_sources": [
+    "xiaohongshu"
+  ],
+  "output": {
+    "base_path": "/Users/Drip/Downloads/LingshuBriefings",
+    "custom_path": ""
+  },
+  "push_time": "09:00",
+  "categories": [
+    {
+      "id": "CAT-TREND",
+      "name_zh": "热点趋势",
+      "name_en": "热点趋势",
+      "icon": "🔥"
+    },
+    {
+      "id": "CAT-STYLE",
+      "name_zh": "风格美学",
+      "name_en": "风格美学",
+      "icon": "🎨"
+    },
+    {
+      "id": "CAT-TUTORIAL",
+      "name_zh": "教程课程",
+      "name_en": "教程课程",
+      "icon": "📚"
+    },
+    {
+      "id": "CAT-TOOL",
+      "name_zh": "工具插件",
+      "name_en": "工具插件",
+      "icon": "🔨"
+    },
+    {
+      "id": "CAT-MODEL",
+      "name_zh": "模型训练",
+      "name_en": "模型训练",
+      "icon": "🧠"
+    },
+    {
+      "id": "CAT-WORKFLOW",
+      "name_zh": "工作流",
+      "name_en": "工作流",
+      "icon": "⚙️"
+    },
+    {
+      "id": "CAT-AGENT",
+      "name_zh": "Agent",
+      "name_en": "Agent",
+      "icon": "🤖"
+    }
+  ]
+}

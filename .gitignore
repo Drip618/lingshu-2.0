@@ -47,6 +47,11 @@ next-env.d.ts
 *.swp
 *.swo
 
+# Database
+/data/*.db
+/data/*.db-wal
+/data/*.db-shm
+
 # OS
 Thumbs.db
 
